@@ -1,0 +1,58 @@
+{%  extends 'layouts/base.html' %}
+{%  block title %}
+{%  endblock %}
+{%  block content %}
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+            {%  if user.student != None and user.professor == None %}
+			 <a href="{%  url 'register-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Register For Class</a>
+            {%  elif user.student == None and user.professor != None %}
+                <a href="{%  url 'create-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Add Class</a>
+            {%  else %}
+                <a href="{%  url 'register-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Register For Class</a>
+                <a href="{%  url 'create-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Add Class</a>
+            {%  endif %}
+		</div>
+	</div>
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Department
+						</th>
+						<th>
+							Class Name
+						</th>
+						<th>
+							Class Code
+						</th>
+						<th>
+							Link
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+                {%  for class in object_list.all %}
+                    {{ class }}
+					<tr>
+						<td>
+							{{ class.department }}
+						</td>
+						<td>
+							{{ class.name }}
+						</td>
+						<td>
+							{{ class.code }}
+						</td>
+						<td>
+							<a href="{%  url 'class-detail' urlclass.registration_code %}">Go to Class</a>
+						</td>
+					</tr>
+                {%  endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{%  endblock %}

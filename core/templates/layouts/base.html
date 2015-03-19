@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Open source implementation of iClicker and THM">
+    {% load staticfiles %}
+    <link href="{% static "bower_components/bootstrap-material-design/dist/css/material.min.css" %}" rel="stylesheet"
+          media="screen">
+    <link href="{% static "bower_components/bootstrap-material-design/dist/css/ripples.min.css" %}" rel="stylesheet"
+          media="screen">
+    <link href="{% static "bower_components/bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="{% static "bower_components/font-awesome/css/font-awesome.min.css" %}">
+    <link rel="icon" href="{% static "img/favicon.ico" %}">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            {% include 'partials/navbar.html' %}
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<div id="footer">
+    {% include 'partials/footer.html' %}
+</div>
+{% block javascript %}
+    <script type="text/javascript" src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+    <script type="text/javascript"
+            src="{% static "bower_components/bootstrap-material-design/dist/js/material.min.js" %}"></script>
+     <script type="text/javascript"
+            src="{% static "bower_components/bootstrap-material-design/dist/js/ripples.min.js" %}"></script>
+    <script>
+        $.material.init()
+    </script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'homepage' %}">OpenClick</a>
+    </div>
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+            {% if request.user.student == None and request.user.professor != None %}
+                <li class="active"><a href="{% url 'instructor-class-list' %}">Classes</a></li>
+            {% elif request.user.professor == None and request.user.student != None %}
+                <li class="active"><a href="student-class-list">Classes</a></li>
+            {% endif %}
+            <li class="active"><a href="{% url 'haystack_search' %}">Search</a></li>
+            {% if user.is_authenticated and user.is_active %}
+                <li class="active"><a  href="{% url 'user-detail' user.pk %}">{{ user.username }}</a></li>
+            {% endif %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+                {% if user.is_authenticated %}
+                    <li class="active"><a href="{% url "logout" %}">Logout</a></li>
+                {% else %}
+                    <li class="active"><a href="{% url 'login' %}">Sign In</a></li>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</nav>

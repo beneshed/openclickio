@@ -1,0 +1,47 @@
+{% extends "layouts/base.html" %}
+{%  block title %}
+    Welcome to Openclick!
+{%  endblock %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>
+            Hello, world!
+        </h1>
+
+        <p>
+            This is a template for a simple marketing or informational website. It includes a large callout called the
+            hero unit and three supporting pieces of content. Use it as a starting point to create something more
+            unique.
+        </p>
+
+        <p>
+            <a class="btn btn-primary btn-large" href="#">Learn more</a>
+        </p>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-6 column">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Click button below to register as a Student
+                    </h3>
+                </div>
+                <div class="panel-body">
+                   <a href="{% url "register-student" %}" type="button" class="btn btn-lg btn-block btn-success">Register as a Student</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 column">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Click button below to register as an Instructor
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <a href="{% url "register-instructor" %}"type="button"class="btn btn-lg btn-block  btn-warning">Register as an Instructor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,4 @@
+{{ obj.university }}
+{{ obj.department }}
+{{ obj.code }}
+{{ obj.name }}

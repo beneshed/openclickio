@@ -1,0 +1,15 @@
+{% block html %}
+  <p>Hi {{username}},</p>
+
+  <p>You just signed up for my website, using:
+      <dl>
+        <dt>username</dt><dd>{{username}}</dd>
+      </dl>
+  </p>
+
+    <p> To be able to use the website fully you <bold>MUST REGISTER</bold>
+    at this link <a href="http://localhost:8000/activate/{{ activation_key }}/">href="http://localhost:8000/activate/{{ activation_key }}/</a>
+    </p>
+
+  <p>Thanks, you rock!</p>
+{% endblock %}
