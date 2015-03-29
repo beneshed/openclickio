@@ -1,0 +1,79 @@
+{%  extends "layouts/base.html" %}
+{% block title %}
+Dashbaord
+{%  endblock %}
+{%  block content %}
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-8 column">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								Open Questions
+							</h3>
+						</div>
+						<div class="panel-body">
+							{%  for question in questions %}
+                            {%  endfor %}
+                            {%  if questions|length == 0 %}
+                                test
+                            {% endif %}
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 column">
+				</div>
+			</div>
+            <div class="row clearfix">
+				<div class="col-md-8 column">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								Recent Grades
+							</h3>
+						</div>
+						<div class="panel-body">
+							{%  for grade in grades %}
+                            {%  endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 column">
+				</div>
+			</div>
+            <div class="row clearfix">
+				<div class="col-md-8 column">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								Statistics
+							</h3>
+						</div>
+						<div class="panel-body">
+							Panel content
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 column">
+				</div>
+			</div>
+            <div class="row clearfix">
+				<div class="col-md-8 column">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								Your History
+							</h3>
+						</div>
+						<div class="panel-body">
+							Panel content
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 column">
+				</div>
+			</div>
+		</div>
+	</div>
+{%  endblock %}

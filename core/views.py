@@ -6,8 +6,11 @@ from .models import RegisteredLecture, Lecture
 from accounts.models import Professor
 from braces.views import LoginRequiredMixin
 from .forms import RegisterLectureCodeForm, CreateLectureForm
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.core.urlresolvers import reverse, reverse_lazy
+from registration.models import RegisteredMixin
+from django.core.exceptions import ObjectDoesNotExist
+
 
 class StudentListLectureView(LoginRequiredMixin, ListView):
 	template_name = 'list_lecture.html'
@@ -47,4 +50,48 @@ class LectureDetailView(LoginRequiredMixin, DetailView):
 	template_name = 'detail_lecture.html'
 	model = Lecture
 
+
+class LectureListView(LoginRequiredMixin, ListView):
+	template_name = 'list_lecture.html'
+	model = Lecture
+
+
+class UserRegisteredLectureView(LoginRequiredMixin, TemplateView):
+	template_name = 'list_lecture.html'
+
+	def get_context_data(self, **kwargs):
+		context = super(UserRegisteredLectureView, self).get_context_data(**kwargs)
+		context['classes'] = None
+		context['is_student'] = False
+		context['is_instructor'] = False
+		try:
+			context['classes'] = self.request.user.student.classes.all()
+			print self.request.user.student.classes.all()
+			context['is_student'] = True
+		except ObjectDoesNotExist:
+			try:
+				context['classes'] = self.request.user.professor.classes.all()
+				context['is_instructor'] = True
+			except ObjectDoesNotExist:
+				pass
+		return context
+
+class HomePageView(TemplateView):
+	template_name = 'index.html'
+
+	def get(self, request, *args, **kwargs):
+		if request.user.is_authenticated() and request.user.is_active:
+			return redirect('dashboard')
+		else:
+			context = self.get_context_data(**kwargs)
+			return self.render_to_response(context)
+
+	def get_context_data(self, **kwargs):
+		context = super(HomePageView, self).get_context_data(**kwargs)
+		context['is_registered'] = self.request.user.is_active
+		return context
+
+
+class DashboardView(TemplateView):
+	template_name = 'dashboard.html'
 

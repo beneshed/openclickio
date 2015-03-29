@@ -1,15 +1,13 @@
 {%  extends 'layouts/base.html' %}
 {%  block title %}
+    My Classes
 {%  endblock %}
 {%  block content %}
     <div class="row clearfix">
 		<div class="col-md-12 column">
-            {%  if user.student != None and user.professor == None %}
+            {%  if is_student %}
 			 <a href="{%  url 'register-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Register For Class</a>
-            {%  elif user.student == None and user.professor != None %}
-                <a href="{%  url 'create-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Add Class</a>
-            {%  else %}
-                <a href="{%  url 'register-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Register For Class</a>
+            {%  elif is_instructor %}
                 <a href="{%  url 'create-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Add Class</a>
             {%  endif %}
 		</div>
@@ -26,16 +24,24 @@
 							Class Name
 						</th>
 						<th>
-							Class Code
+							Department Code
 						</th>
+                        <th>
+                            Registration Code
+                        </th>
+                        <th>
+                            Professor
+                        </th>
+                        <th>
+                            Enrollment #
+                        </th>
 						<th>
 							Link
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-                {%  for class in object_list.all %}
-                    {{ class }}
+                {%  for class in classes %}
 					<tr>
 						<td>
 							{{ class.department }}
@@ -46,8 +52,17 @@
 						<td>
 							{{ class.code }}
 						</td>
+                        <td>
+                            {{ class.registration_code }}
+                        </td>
+                        <td>
+                            {{ class.professor }}
+                        </td>
+                        <td>
+                            {{ class.enrollment_count }}
+                        </td>
 						<td>
-							<a href="{%  url 'class-detail' urlclass.registration_code %}">Go to Class</a>
+							<a href="{%  url 'detail-lecture' class.pk %}">View Class Page</a>
 						</td>
 					</tr>
                 {%  endfor %}

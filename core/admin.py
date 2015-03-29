@@ -19,5 +19,8 @@ class LectureAdmin(admin.ModelAdmin):
 	inlines = (RosterInline, QuestionInline, )
 
 	def professor(self, obj):
-		return obj.professors_lectures.all()[0]
+		if len(obj.professors_lectures.all()) > 0:
+			return obj.professors_lectures.all()[0]
+		else:
+			return None
 

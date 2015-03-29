@@ -2,6 +2,7 @@ from django.db import models
 from model_utils.models import TimeStampedModel
 from datetime import date
 from randomslugfield import RandomSlugField
+from accounts.models import Professor
 
 
 class University(TimeStampedModel):
@@ -34,9 +35,19 @@ class Lecture(TimeStampedModel):
 	def __unicode__(self):
 		return u'%s:%s %d' % (self.department, self.name, self.year)
 
+	def professor(self):
+		for professor in Professor.objects.all():
+			if self in professor.lectures.all():
+				return professor
+		return None
+
+	def enrollment_count(self):
+		return len(self.roster.all())
+
 	class Meta:
 		verbose_name = 'Class'
 		verbose_name_plural = 'Classes'
+		unique_together = ('university', 'department', 'name', 'year', 'code')
 
 
 

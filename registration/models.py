@@ -8,6 +8,10 @@ import hashlib, random, re
 from django.conf import settings
 from templated_email import send_templated_mail
 import requests
+from braces.views._access import AccessMixin
+from django.contrib.auth.views import redirect_to_login
+from django.shortcuts import redirect
+from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 
 
 SHA256_RE = re.compile('^[a-f0-9]{40}$')
@@ -62,3 +66,13 @@ class Registration(TimeStampedModel):
 
 	def __unicode__(self):
 		return u"Registration information for %s" % self.user
+
+
+class RegisteredMixin(AccessMixin):
+	redirect_unauthenticated_users = False
+
+	def dispatch(self, request, *args, **kwargs):
+		if not request.user.is_active:
+			return redirect('homepage')
+		return super(RegisteredMixin, self).dispatch(
+            request, *args, **kwargs)

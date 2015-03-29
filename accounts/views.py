@@ -22,10 +22,14 @@ class UserDetailView(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super(UserDetailView, self).get_context_data(**kwargs)
 		context['student'] = None
+		context['is_student'] = False
+		context['is_instructor'] = False
 		context['professor'] = None
 		if self.request.user.student is not None and self.request.user.professor is None:
 			context['student'] = self.request.user.student
+			context['is_student'] = True
 		elif self.request.user.student is None and self.request.user.professor is not None:
 			context['professor'] = self.request.user.professor
+			context['is_instructor'] = True
 		return context
 

@@ -5,13 +5,11 @@
 {% block content %}
     <div class="jumbotron">
         <h1>
-            Hello, world!
+            OpenClick[IO]
         </h1>
 
         <p>
-            This is a template for a simple marketing or informational website. It includes a large callout called the
-            hero unit and three supporting pieces of content. Use it as a starting point to create something more
-            unique.
+            A simple, open source, extenable replacement to current products such as iClicker or Top Hat Monocle.
         </p>
 
         <p>
@@ -19,6 +17,7 @@
         </p>
     </div>
     <div class="row clearfix">
+    {% if user.is_authenticated and is_registered == False %}
         <div class="col-md-6 column">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -43,5 +42,6 @@
                 </div>
             </div>
         </div>
+    {% endif %}
     </div>
 {% endblock %}

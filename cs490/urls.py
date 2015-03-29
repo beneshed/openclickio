@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import user_passes_test
+from core.views import HomePageView, DashboardView
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^search/', include('haystack.urls')),
     url(r'^classes/', include('core.urls')),
     #url(r'^qa/', include('qa.urls')),
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name='homepage'),
+    url(r'^$', HomePageView.as_view(), name='homepage'),
+    url(r'^dashboard/$', DashboardView.as_view(), name='dashboard'),
 
 )
