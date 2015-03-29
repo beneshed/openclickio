@@ -6,6 +6,7 @@
         <option name="rootFolder" value="$MODULE_DIR$" />
         <option name="settingsModule" value="cs490/settings/development.py" />
         <option name="manageScript" value="manage.py" />
+        <option name="environment" value="&lt;map/&gt;" />
       </configuration>
     </facet>
   </component>
@@ -16,7 +17,7 @@
       <sourceFolder url="file://$MODULE_DIR$/qa" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/registration" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 2.7.6 virtualenv at ~/.virtualenvs/cs490" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="sass-stdlib" level="application" />
   </component>
@@ -34,4 +35,3 @@
     </option>
   </component>
 </module>
-
