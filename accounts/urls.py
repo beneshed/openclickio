@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
-from .views import InstructorCreateView, UserDetailView
+from .views import InstructorCreateView, UserDetailView, PublicProfileView
 
 urlpatterns = patterns('',
     url(r'^search/', include('haystack.urls')),
@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^new/$', TemplateView.as_view(template_name='new_account.html'), name='new-account'),
     url(r'^create/instructor/$', InstructorCreateView.as_view(), name='create-instructor'),
     url(r'^profile/(?P<pk>[-_\w]+)/$', UserDetailView.as_view(), name='user-detail'),
+    url(r'^public/profile/(?P<pk>[-_\w]+)/$', PublicProfileView, name='public-profile'),
 )

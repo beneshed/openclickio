@@ -58,10 +58,14 @@
                         </thead>
                         <tbody>
                         {% for response in responses %}
-                            <tr>
+                            {% if response.is_correct %}
+                            <tr class="success">
+                            {% else %}
+                                <tr class="danger">
+                                {% endif %}
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ response.student.user.first_name }}, {{ response.student.user.last_name }}</td>
-                                <td>{{ response.id }}</td>
+                                <td>{{ response.answer_option.id }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

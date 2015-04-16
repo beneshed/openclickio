@@ -49,5 +49,12 @@ class Lecture(TimeStampedModel):
 		unique_together = ('university', 'department', 'name', 'year', 'code')
 
 
+class AttendanceRecord(TimeStampedModel):
+	lecture = models.ForeignKey(Lecture)
+	student = models.ForeignKey('accounts.Student')
+	date = models.DateField(default=date.today())
+	present = models.BooleanField(default=False)
 
+	def attend(self):
+		self.present = True
 

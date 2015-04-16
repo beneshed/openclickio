@@ -1,0 +1,73 @@
+{%  extends 'layouts/base.html' %}
+{%  block title %}
+    My Classes
+{%  endblock %}
+{%  block content %}
+    <div class="row clearfix">
+		<div class="col-md-12">
+            {%  if user.instructor == None %}
+			 <a href="{%  url 'register-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Register For Class</a>
+            {%  elif user.student == None %}
+                <a href="{%  url 'create-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Add Class</a>
+            {%  endif %}
+		</div>
+	</div>
+    <div class="row">
+		<div class="col-md-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Department
+						</th>
+						<th>
+							Class Name
+						</th>
+						<th>
+							Department Code
+						</th>
+                        <th>
+                            Registration Code
+                        </th>
+                        <th>
+                            Professor
+                        </th>
+                        <th>
+                            Enrollment #
+                        </th>
+						<th>
+							Link
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+                {%  for object in object_list %}
+					<tr>
+						<td>
+							{{ object.lecture.department }}
+						</td>
+						<td>
+							{{ object.lecture.name }}
+						</td>
+						<td>
+							{{ object.lecture.code }}
+						</td>
+                        <td>
+                            {{ object.lecture.registration_code }}
+                        </td>
+                        <td>
+                            {{ object.lecture.instructor.user.first_name }},  {{ object.lecture.instructor.user.last_name }}
+                        </td>
+                        <td>
+                            {{ object.lecture.enrollment_count }}
+                        </td>
+						<td>
+							<a href="{%  url 'student-detail-lecture' object.pk %}">View Class Page</a>
+						</td>
+					</tr>
+                {%  endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{%  endblock %}

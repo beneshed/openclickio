@@ -4,8 +4,7 @@
 {% block content %}
     <div class="row">
         <div class="col-lg-6">
-            <button class="btn btn-primary">Take Attendance</button>
-            <button class="btn btn-primary">Create New Question</button>
+            <a class="btn btn-primary" href="{% url 'roster-detail' object.id %}">View Roster</a>
         </div>
     </div>
     <div class="row">
@@ -26,10 +25,12 @@
                             <tr>
                                 <td>{{ student.student.user.first_name }}, {{ student.student.user.last_name }}</td>
                                 <td>
-                                    <a class="btn btn-success" href="{% url 'approve-deny-lecture' student.id 'true'  %}">Approve</a>
+                                    <a class="btn btn-success"
+                                       href="{% url 'approve-deny-lecture' student.id 'true' %}">Approve</a>
                                 </td>
                                 <td>
-                                   <a class="btn btn-warning" href="{% url 'approve-deny-lecture' student.id 'false'  %}">Deny</a>
+                                    <a class="btn btn-warning"
+                                       href="{% url 'approve-deny-lecture' student.id 'false' %}">Deny</a>
                                 </td>
                             </tr>
 
@@ -42,7 +43,9 @@
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Roster</h3>
+                    <h3 class="panel-title">Attendance <a class="btn btn-primary"
+                                                          href="{% url 'create-attendance' object.id %}">Take
+                        Attendance</a></h3>
                 </div>
                 <div class="panel-body">
                     <table class="table table-hover table-responsive">
@@ -51,10 +54,14 @@
                         <th>In Class?</th>
                         </thead>
                         <tbody>
-                        {% for student in registered_lectures %}
+                        {% for student in in_class_students %}
                             <tr>
                                 <td>{{ student.student.user.first_name }}, {{ student.student.user.last_name }}</td>
-                                <td>Y</td>
+                                {% if student.present %}
+                                    <td><i class="fa fa-check"></i></td>
+                                {% else %}
+                                    <td><i class="fa fa-times"></i></td>
+                                {% endif %}
                             </tr>
 
                         {% endfor %}
@@ -65,35 +72,92 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-4">
+            <a class="btn btn-success dropdown-toggle" id="createDropDown" data-toggle="dropdown" data-target="#"><i
+                    class="fa fa-plus"></i><span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="createDropDown">
+                {# <li><a href="#">Create Multiple Choice Question</a></li> #}
+                <li><a href="{% url 'boolean-question-create' %}">Create True/False Question</a></li>
+                <li><a href="{% url 'open-question-create' %}">Create Open Ended Question</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Class Questions</h3>
+                    <h3 class="panel-title">Class Questions
+                    </h3>
                 </div>
                 <div class="panel-body">
+                <h2> Close Ended Questions</h2>
                     <table class="table table-responsive">
                         <thead>
-                            <th>Question #</th>
-                            <th>Question Text</th>
-                            <th>Answer</th>
-                            <th>Active</th>
-                            <th>Activate</th>
-                            <th>Responses</th>
+                        <th>Question #</th>
+                        <th>Question Text</th>
+                        <th>Answer</th>
+                        <th>Active</th>
+                        <th>Activate/ Deactivate</th>
+                        <th>Responses</th>
+                        <th>Delete</th>
+                        </thead>
+                        <tbody>
+                        {% for question in closed_questions %}
+                            <tr>
+                                <td>{{ question.id }}</td>
+                                <td>{{ question.text }}</td>
+                                <td>{{ question.answer.correct_answer.text }}</td>
+                                {% if question.is_active %}
+                                    <td><i class="fa fa-check"></i></td>
+                                    <td>
+                                        <button class="btn btn-default">Deactivate</button>
+                                    </td>
+                                {% else %}
+                                    <td><i class="fa fa-times"></i></td>
+                                    <td>
+                                        <button class="btn btn-default">Activate</button>
+                                    </td>
+                                {% endif %}
+                                <td>
+                                    <a href="{% url 'question-answer-reponse-detail' question.id %}">{{ question.get_response_count }}</a>
+                                </td>
+                                <td><a class="btn btn-danger" href="{% url 'question-delete' question.id %}">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                                <h2> Open Ended Questions</h2>
+                    <table class="table table-responsive">
+                        <thead>
+                        <th>Question #</th>
+                        <th>Question Text</th>
+                        <th>Active</th>
+                        <th>Activate/ Deactivate</th>
+                        <th>Responses</th>
+                        <th>Delete</th>
                         </thead>
                         <tbody>
                         {% for question in questions %}
                             <tr>
                                 <td>{{ question.id }}</td>
                                 <td>{{ question.text }}</td>
-                                <td>{{ question.answer.id }}</td>
                                 {% if question.is_active %}
                                     <td><i class="fa fa-check"></i></td>
+                                    <td>
+                                        <button class="btn btn-default">Deactivate</button>
+                                    </td>
                                 {% else %}
-                                   <td><i class="fa fa-times"></i></td>
+                                    <td><i class="fa fa-times"></i></td>
+                                    <td>
+                                        <button class="btn btn-default">Activate</button>
+                                    </td>
                                 {% endif %}
-                                <td><button class="btn btn-default">Activate</button></td>
-                                <td><a href="{% url 'question-answer-reponse-detail' question.id %}">{{ question.get_response_count }}</a></td>
-
+                                <td>
+                                    <a href="{% url 'question-answer-reponse-detail' question.id %}">{{ question.get_response_count }}</a>
+                                </td>
+                                <td><a class="btn btn-danger" href="{% url 'question-delete' question.id %}">Delete</a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

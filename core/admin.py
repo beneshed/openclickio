@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import University, Lecture, RegisteredLecture
+from .models import University, Lecture, RegisteredLecture, AttendanceRecord
 from qa.models import LectureQuestion
 # Register your models here.
 # Register your models here.
@@ -21,3 +21,7 @@ class LectureAdmin(admin.ModelAdmin):
 @admin.register(RegisteredLecture)
 class RegisteredLecture(admin.ModelAdmin):
 	list_display = ('lecture', 'student', 'approved')
+
+@admin.register(AttendanceRecord)
+class AttendanceRecordAdmin(admin.ModelAdmin):
+	list_display = ('id', 'created', 'lecture', 'student', 'present')

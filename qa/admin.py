@@ -1,17 +1,15 @@
 from django.contrib import admin
-from .models import Answer, AnswerOption, AnswerInstance, Category, Question
+from .models import Answer, AnswerOption, AnswerInstance, Question,\
+	OpenEndedResponse, ClosedEndedQuestion
 # Register your models here.
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-	pass
 
 @admin.register(AnswerOption)
 class AnswerOptionAdmin(admin.ModelAdmin):
-	list_display = ('id', 'category', 'text')
+	list_display = ('id', 'text')
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
-	list_display = ('id', 'created', 'owner', 'category', 'correct_answer')
+	list_display = ('id', 'created', 'owner', 'correct_answer')
 
 @admin.register(AnswerInstance)
 class AnswerInstanceAdmin(admin.ModelAdmin):
@@ -30,5 +28,10 @@ def deactivate(modeladmin,request, queryset):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
+	list_display = ('id', 'owner', 'text', 'active')
+	actions = [activate, deactivate]
+
+@admin.register(ClosedEndedQuestion)
+class ClosedEndedQuestionAdmin(admin.ModelAdmin):
 	list_display = ('id', 'owner', 'text', 'answer', 'active')
 	actions = [activate, deactivate]

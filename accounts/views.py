@@ -1,5 +1,5 @@
 from django.views.generic import CreateView, TemplateView, DetailView
-from django.core.urlresolvers import reverse, reverse_lazy
+
 from .models import Instructor
 from django.shortcuts import redirect
 from core.models import University
@@ -33,3 +33,21 @@ class UserDetailView(DetailView):
 			context['is_instructor'] = True
 		return context
 
+
+class PublicProfileView(DetailView):
+	template_name = "user_detail.html"
+	model = User
+
+	def get_context_data(self, **kwargs):
+		context = super(PublicProfileView, self).get_context_data(**kwargs)
+		context['student'] = None
+		context['is_student'] = False
+		context['is_instructor'] = False
+		context['instructor'] = None
+		if self.request.user.student is not None and self.request.user.instructor is None:
+			context['student'] = self.request.user.student
+			context['is_student'] = True
+		elif self.request.user.student is None and self.request.user.instructor is not None:
+			context['instructor'] = self.request.user.instructor
+			context['is_instructor'] = True
+		return context
