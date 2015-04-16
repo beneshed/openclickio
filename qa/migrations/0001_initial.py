@@ -11,8 +11,8 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('taggit', '0001_initial'),
-        ('accounts', '0002_auto_20150319_1323'),
-        ('core', '0001_initial'),
+        ('accounts', '__first__'),
+        ('core', '__first__'),
     ]
 
     operations = [
@@ -76,7 +76,7 @@ class Migration(migrations.Migration):
                 ('text', models.TextField()),
                 ('active', models.BooleanField(default=False)),
                 ('answer', models.ForeignKey(to='qa.Answer')),
-                ('owner', models.ForeignKey(to='accounts.Professor')),
+                ('owner', models.ForeignKey(to='accounts.Instructor')),
                 ('tags', taggit.managers.TaggableManager(to='taggit.Tag', through='taggit.TaggedItem', help_text='A comma-separated list of tags.', verbose_name='Tags')),
             ],
             options={
@@ -117,7 +117,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='answer',
             name='owner',
-            field=models.ForeignKey(to='accounts.Professor'),
+            field=models.ForeignKey(to='accounts.Instructor'),
             preserve_default=True,
         ),
     ]

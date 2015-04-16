@@ -14,7 +14,7 @@ def callback(sender, user, **kwargs):
 
 @receiver(post_save, sender=User)
 def check_user(sender, instance, signal, created, **kwargs):
-	if created:
+	if created and instance.is_superuser == False:
 		instance.is_active = False
 		instance.email = "%s@%s" % (instance.username, settings.ORGANIZATION_EMAIL_DOMAIN)
 		instance.save()

@@ -2,7 +2,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from django.shortcuts import get_object_or_404
 from .models import Registration
-from accounts.models import Student, Professor
+from accounts.models import Student, Instructor
 from core.models import University
 from django.shortcuts import redirect
 
@@ -35,7 +35,7 @@ class InstructorRegistrationView(FormView):
 
 	def get(self, request, *args, **kwargs):
 		uni = University.objects.get(pk=1)
-		Professor.objects.get_or_create(university=uni, user=self.request.user)
+		Instructor.objects.get_or_create(university=uni, user=self.request.user)
 		return redirect('instructor-class-list')
 
 

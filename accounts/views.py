@@ -1,6 +1,6 @@
 from django.views.generic import CreateView, TemplateView, DetailView
 from django.core.urlresolvers import reverse, reverse_lazy
-from .models import Professor
+from .models import Instructor
 from django.shortcuts import redirect
 from core.models import University
 from django.contrib.auth.models import User
@@ -10,7 +10,7 @@ class InstructorCreateView(TemplateView):
 
 	def get(self, request, *args, **kwargs):
 		u = University.objects.get(pk=1)
-		p = Professor.objects.create(user=request.user, university=u)
+		p = Instructor.objects.create(user=request.user, university=u)
 		p.save()
 		return redirect('user-detail')
 
@@ -24,12 +24,12 @@ class UserDetailView(DetailView):
 		context['student'] = None
 		context['is_student'] = False
 		context['is_instructor'] = False
-		context['professor'] = None
-		if self.request.user.student is not None and self.request.user.professor is None:
+		context['instructor'] = None
+		if self.request.user.student is not None and self.request.user.instructor is None:
 			context['student'] = self.request.user.student
 			context['is_student'] = True
-		elif self.request.user.student is None and self.request.user.professor is not None:
-			context['professor'] = self.request.user.professor
+		elif self.request.user.student is None and self.request.user.instructor is not None:
+			context['instructor'] = self.request.user.instructor
 			context['is_instructor'] = True
 		return context
 

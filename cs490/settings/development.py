@@ -25,12 +25,15 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+	'localhost',
+    '0.0.0.0'
+]
 
 
 # Application definition
 DJANGO_APPS = (
-	    'django.contrib.admin',
+	'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -110,8 +113,12 @@ EMAIL_USE_TLS = True
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': secrets.DB_NAME,
+        'USER': secrets.DB_USER,
+        'PASSWORD': secrets.DB_PASSWORD,
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -142,10 +149,11 @@ MEDIA_URL = '/file/'
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = 'static'
 
 STATICFILES_DIRS = (
-	'static',
     'bower_components',
+    'css',
 )
 
 TEMPLATE_DIRS = (

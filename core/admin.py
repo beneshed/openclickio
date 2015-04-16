@@ -15,12 +15,9 @@ class QuestionInline(admin.TabularInline):
 
 @admin.register(Lecture)
 class LectureAdmin(admin.ModelAdmin):
-	list_display = ('id', 'created', 'professor', 'university', 'department', 'name')
+	list_display = ('id', 'created', 'instructor', 'university', 'department', 'name')
 	inlines = (RosterInline, QuestionInline, )
 
-	def professor(self, obj):
-		if len(obj.professors_lectures.all()) > 0:
-			return obj.professors_lectures.all()[0]
-		else:
-			return None
-
+@admin.register(RegisteredLecture)
+class RegisteredLecture(admin.ModelAdmin):
+	list_display = ('lecture', 'student', 'approved')

@@ -4,10 +4,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import BaseUserManager
 
 
-class Professor(TimeStampedModel):
+class Instructor(TimeStampedModel):
 	user = models.OneToOneField(User)
 	university = models.ForeignKey('core.University')
-	lectures = models.ManyToManyField('core.Lecture', related_name='professors_lectures', blank=True, null=True)
 
 	def __unicode__(self):
 		return u'%s: %s' % (self.user.get_full_name(), self.university)

@@ -5,9 +5,9 @@
 {%  block content %}
     <div class="row clearfix">
 		<div class="col-md-12 column">
-            {%  if is_student %}
+            {%  if user.instructor == None %}
 			 <a href="{%  url 'register-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Register For Class</a>
-            {%  elif is_instructor %}
+            {%  elif user.student == None %}
                 <a href="{%  url 'create-lecture' %}" type="button" class="btn btn-danger btn-lg btn-block">Add Class</a>
             {%  endif %}
 		</div>
@@ -41,7 +41,7 @@
 					</tr>
 				</thead>
 				<tbody>
-                {%  for class in classes %}
+                {%  for class in object_list %}
 					<tr>
 						<td>
 							{{ class.department }}
@@ -56,7 +56,7 @@
                             {{ class.registration_code }}
                         </td>
                         <td>
-                            {{ class.professor }}
+                            {{ class.instructor.user.first_name }},  {{ class.instructor.user.last_name }}
                         </td>
                         <td>
                             {{ class.enrollment_count }}

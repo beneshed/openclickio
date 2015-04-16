@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Answer, AnswerOption, Category, Question
+from .models import Answer, AnswerOption, AnswerInstance, Category, Question
 # Register your models here.
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -13,6 +13,10 @@ class AnswerOptionAdmin(admin.ModelAdmin):
 class AnswerAdmin(admin.ModelAdmin):
 	list_display = ('id', 'created', 'owner', 'category', 'correct_answer')
 
+@admin.register(AnswerInstance)
+class AnswerInstanceAdmin(admin.ModelAdmin):
+	list_display = ('id', 'created', 'student', 'question', 'answer_option')
+
 
 def activate(modeladmin, request, queryset):
 	for obj in queryset:
@@ -22,6 +26,7 @@ def activate(modeladmin, request, queryset):
 def deactivate(modeladmin,request, queryset):
 	for obj in queryset:
 		obj.deactivate()
+
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):

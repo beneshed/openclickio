@@ -1,16 +1,17 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, DetailView
+from django.views.generic import TemplateView, FormView, DetailView, View
 from django.views.generic.list import ListView
 from django.views.generic import CreateView
 from .models import RegisteredLecture, Lecture
-from accounts.models import Professor
+from qa.models import Question
+from accounts.models import Instructor
 from braces.views import LoginRequiredMixin
 from .forms import RegisterLectureCodeForm, CreateLectureForm
 from django.shortcuts import get_object_or_404, redirect
 from django.core.urlresolvers import reverse, reverse_lazy
 from registration.models import RegisteredMixin
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.http import HttpResponseRedirect, HttpResponse
 
 class StudentListLectureView(LoginRequiredMixin, ListView):
 	template_name = 'list_lecture.html'
@@ -25,7 +26,7 @@ class InstructorListLectureView(LoginRequiredMixin, ListView):
 	model = Lecture
 
 	def get_queryset(self):
-		return self.request.user.professor.lectures
+		return Lecture.objects.filter(instructor=self.request.user.instructor)
 
 
 class RegisteredLectureCreateView(LoginRequiredMixin, FormView):
@@ -45,10 +46,22 @@ class CreateLectureView(LoginRequiredMixin, CreateView):
 	form_class = CreateLectureForm
 	success_url = reverse_lazy('instructor-class-list')
 
+	def form_valid(self, form):
+		form.instance.instructor = self.request.user.instructor
+		form.instance.university = self.request.user.instructor.university
+		return super(CreateLectureView, self).form_valid(form)
+
 
 class LectureDetailView(LoginRequiredMixin, DetailView):
 	template_name = 'detail_lecture.html'
 	model = Lecture
+
+	def get_context_data(self, **kwargs):
+		context = super(LectureDetailView, self).get_context_data(**kwargs)
+		context['pending_students'] = RegisteredLecture.objects.filter(lecture=self.object, approved=False)
+		context['registered_lectures'] = RegisteredLecture.objects.filter(lecture=self.object, approved=True)
+		context['questions'] = Question.objects.filter(owner=self.request.user.instructor, lecture=self.object)
+		return context
 
 
 class LectureListView(LoginRequiredMixin, ListView):
@@ -70,11 +83,28 @@ class UserRegisteredLectureView(LoginRequiredMixin, TemplateView):
 			context['is_student'] = True
 		except ObjectDoesNotExist:
 			try:
-				context['classes'] = self.request.user.professor.classes.all()
+				context['classes'] = Lecture.objects.filter(instructor=self.request.user)
 				context['is_instructor'] = True
 			except ObjectDoesNotExist:
 				pass
 		return context
+
+
+class UserRegisteredLectureApproveView(LoginRequiredMixin, View):
+
+	def get(self, request, **kwargs):
+		registration = get_object_or_404(RegisteredLecture,pk=self.kwargs['pk'])
+		if self.kwargs['approved'] == 'true':
+			registration.approve()
+			registration.save()
+		elif self.kwargs['approved'] == 'false':
+			registration.deny()
+			registration.save()
+		else:
+			return HttpResponse(status=400)
+		return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
 
 class HomePageView(TemplateView):
 	template_name = 'index.html'

@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('accounts.urls')),
     url(r'^search/', include('haystack.urls')),
     url(r'^classes/', include('core.urls')),
-    #url(r'^qa/', include('qa.urls')),
+    url(r'^qa/', include('qa.urls')),
     url(r'^$', HomePageView.as_view(), name='homepage'),
     url(r'^dashboard/$', DashboardView.as_view(), name='dashboard'),
 

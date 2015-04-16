@@ -1,10 +1,10 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Student, Professor
+from .models import Student, Instructor
 
-class ProfessorInline(admin.StackedInline):
-	model = Professor
+class InstructorInline(admin.StackedInline):
+	model = Instructor
 	can_delete = False
 	verbose_name_plural = 'Professors'
 
@@ -14,8 +14,8 @@ class StudentInline(admin.StackedInline):
 	verbose_name_plural = 'Students'
 
 
-@admin.register(Professor)
-class ProfessorAdmin(admin.ModelAdmin):
+@admin.register(Instructor)
+class InstructorAdmin(admin.ModelAdmin):
 	def has_delete_permission(self, request, obj=None): # note the obj=None
 		return False
 

@@ -24,4 +24,4 @@ class CreateLectureForm(forms.ModelForm):
 
 	class Meta:
 		model = Lecture
-		exclude = ['roster', 'questions']
+		exclude = ['university', 'instructor', 'roster', 'questions']

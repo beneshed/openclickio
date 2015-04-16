@@ -61,7 +61,7 @@ class RegistrationManager(models.Manager):
 class Registration(TimeStampedModel):
 	user = models.OneToOneField(User, unique=True)
 	verified = models.BooleanField(default=False)
-	activation_key = models.CharField(max_length=40)
+	activation_key = models.CharField(max_length=255)
 	objects = RegistrationManager()
 
 	def __unicode__(self):
