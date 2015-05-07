@@ -1,0 +1,864 @@
+
+%% bare_conf.tex
+%% V1.3
+%% 2007/01/11
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.7 or later) with an IEEE conference paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex
+%%*************************************************************************
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices can trigger bugs that do  ***
+% *** not appear when using other class files.                            ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+
+% Note that the a4paper option is mainly intended so that authors in
+% countries using A4 can easily print to A4 and see how their papers will
+% look in print - the typesetting of the document will not typically be
+% affected with changes in paper size (but the bottom and side margins will).
+% Use the testflow package mentioned above to verify correct handling of
+% both paper sizes by the user's LaTeX system.
+%
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+\documentclass[conference]{IEEEtran}
+\usepackage{blindtext, graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\lstset{language=Python}  
+
+
+% Add the compsoc option for Computer Society conferences.
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[conference]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+%\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 4.0 (2003-05-27) and later if using hyperref.sty. cite.sty does
+% not currently provide for hyperlinked citations.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found as epslatex.ps or
+% epslatex.pdf at: http://www.ctan.org/tex-archive/info/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\usepackage[tight,footnotesize]{subfigure}
+% subfigure.sty was written by Steven Douglas Cochran. This package makes it
+% easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
+% work, it is a good idea to load it with the tight package option to reduce
+% the amount of white space around the subfigures. subfigure.sty is already
+% installed on most LaTeX systems. The latest version and documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/obsolete/macros/latex/contrib/subfigure/
+% subfigure.sty has been superceeded by subfig.sty.
+
+
+
+%\usepackage[caption=false]{caption}
+%\usepackage[font=footnotesize]{subfig}
+% subfig.sty, also written by Steven Douglas Cochran, is the modern
+% replacement for subfigure.sty. However, subfig.sty requires and
+% automatically loads Axel Sommerfeldt's caption.sty which will override
+% IEEEtran.cls handling of captions and this will result in nonIEEE style
+% figure/table captions. To prevent this problem, be sure and preload
+% caption.sty with its "caption=false" package option. This is will preserve
+% IEEEtran.cls handing of captions. Version 1.3 (2005/06/28) and later 
+% (recommended due to many improvements over 1.2) of subfig.sty supports
+% the caption=false option directly:
+%\usepackage[caption=false,font=footnotesize]{subfig}
+%
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+% The latest version and documentation of caption.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/caption/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Documentation is contained in the stfloats.sty comments as well as in the
+% presfull.pdf file. Do not use the stfloats baselinefloat ability as IEEE
+% does not allow \baselineskip to stretch. Authors submitting work to the
+% IEEE should note that IEEE rarely uses double column equations and
+% that authors should try to avoid such use. Do not be tempted to use the
+% cuted.sty or midfloat.sty packages (also by Sigitas Tolusis) as IEEE does
+% not format its papers in such ways.
+
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/misc/
+% Read the url.sty source comments for usage information. Basically,
+% \url{my_url_here}.
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{OpenClick: An Open Source Clicker Implementation}
+
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Ben Waters}
+\IEEEauthorblockA{
+George Mason University\\
+Fairfax, VA 22030\\
+Email: bwaters3@gmu.edu}
+\and
+\IEEEauthorblockN{Ryan Wolfe}
+\IEEEauthorblockA{
+George Mason University\\
+Fairfax, VA 22030\\
+Email: rwolfe5@gmu.edu}}
+
+% conference papers do not typically use \thanks and this command
+% is locked out in conference mode. If really needed, such as for
+% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
+% after \documentclass
+
+% for over three affiliations, or if they all won't fit within the width
+% of the page, use this alternative format:
+% 
+%\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
+%Homer Simpson\IEEEauthorrefmark{2},
+%James Kirk\IEEEauthorrefmark{3}, 
+%Montgomery Scott\IEEEauthorrefmark{3} and
+%Eldon Tyrell\IEEEauthorrefmark{4}}
+%\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
+%Georgia Institute of Technology,
+%Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
+%\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
+%Email: homer@thesimpsons.com}
+%\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
+%Telephone: (800) 555--1212, Fax: (888) 555--1212}
+%\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+
+\begin{abstract}
+%\boldmath
+The question we asked ourselves was if we could create a system that rivaled other interactive classroom quizzing systems such as iClicker and Top Hat Monocle. Our implementation would need to be free, accessible, customizable, and benefit the student more so than the other systems. The benefits aim to include promoting positive interaction between the students and the classroom, increase the amount of learning done by keeping the students attention focused on the work, and by not costing them a penny. What we ultimately landed on was the idea of OpenClick. The aim of OpenClick is to provide teachers and students with an easily accessible and usable way of live classroom quizzing at an extremely low cost. Open Click is completely open source and customizable to the teacher, student, or institution. By being customizable, this would allow for a greater variety of question types including multiple choice, short answer, true and false, essay, and more. The benefits of having a larger variety of question types compared to other implementations would ultimately allow for more feedback to be given to the students from the teachers, resulting in more engagement and increased learning. The following pages will detail our thought process on how to go about creating OpenClick, the problems we faced, how we overcame these specific problems, and the results and conclusion of our efforts.
+\end{abstract}
+% IEEEtran.cls defaults to using nonbold math in the Abstract.
+% This preserves the distinction between vectors and scalars. However,
+% if the journal you are submitting to favors bold math in the abstract,
+% then you can use LaTeX's standard command \boldmath at the very start
+% of the abstract to achieve this. Many IEEE journals frown on math
+% in the abstract anyway.
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+iClicker, Top Hat Monocle, OpenClick, classroom, quizzing
+\end{IEEEkeywords}
+
+
+
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+\section{Background}
+As a student in any level of education, you will have, or will one day find yourself face to face with an intimidating sheet of paper that reads, “QUIZ” at the top. In this day and age, many teachers, professors, and schools are heading down a path that leads to a digital classroom; a classroom void of paper. To implement technology into the classrooms and curriculum, many teachers and professors are having these quizzes be accessed through the Internet rather than taken on a sheet of paper. One such way of having these digital quizzes is to use a form of live quizzing. Live quizzing takes place during class time and requires the student to answer specific questions supplied by the teacher or professor. The few implementations that are currently available and use this system of live quizzing require the student to either buy hardware or sign up to access a website that hosts the questions and usually both cost money. As students, not everyone has that kind of money to spend. Besides the problem of cost, many of these systems are very limited in their use. 
+
+\section{Introduction}
+Currently, there exist multiple implementations of live quiz systems such as iClicker and Top Hat Monocle. The one thing that both of these systems lack is expandability and a low cost to students and teachers. The question we posed to ourselves was can there be a free and simple, yet customizable and useful interactive questioning system for classrooms to replace current implementations such as iClicker and Top Hat Monocle. iClicker and Top Hat Monocle both require the student to pay for the usage of the system. iClicker requires that the students purchase individual hardware or purchase an app on their smart phone to access the system and Top Hat Monocle requires that the students pay a fee to sign up and access the website that runs the software. Both iClicker and Top Hat Monocle have a steep starting price to use their systems. iClicker’s most basic clicker, the i>clicker+ costs \$45 while the i$>$clicker 2 costs \$55 [5]. Top Hat Monocle, on the other hand, offers deals for \$24 for a semester, \$36 for a year, and \$72 for a lifetime, all while being free for the professor [6]. 
+
+
+%tables here
+\caption{iClicker}
+\begin{table}[h]
+\begin{tabular}{|l|l|}
+\hline
+Cost              & \begin{tabular}[c]{@{}l@{}}Instructor - \$45 hardware device, \$9.99  single\\ semester application license + \$7 registration\\ fee on used devices\\ Student - \$9.99 per semester for\\ software or \$45 for the basic hardware model  \\\end{tabular} \\ \hline
+Hardware/Software & Mobile applications / clicker hardware \  \\ \hline
+Unique Features   & Polls and grades only \\ \hline
+\end{tabular}
+\end{table}
+
+\caption{Top Hat Monocle}
+\begin{table}[h]
+\begin{tabular}{|l|l|}
+\hline
+Cost              & \begin{tabular}[c]{@{}l@{}}Instructor - FREE\\ Student -\$24 for a semester, \$36 for\\ a year, and \$72 for a lifetime\end{tabular} \\ \hline
+Hardware/Software & Mobile applications only                    \\ \hline
+Unique Features   & Polls and grades only 
+\\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+\caption{OpenClick}
+\begin{table}[h]
+\begin{tabular}{|l|l|}
+\hline
+Cost              & University - \textless\$60 a year for hosting                                                                \\ \hline
+Hardware/Software & \begin{tabular}[c]{@{}l@{}}Mobile (after framework applied), \\ web based (hardware on the way)\end{tabular} \\ \hline
+Unique Features   & SMS and multiple question types                                                                              \\ \hline
+\end{tabular}
+\end{table}
+
+Our implementation, Open Click, will be free for the students. We set up an easy to configure environment built into the cloud with an option of open source hardware using a Raspberry Pi. Open Click is essentially a CMS (Content Management System) designed specifically for education and learning. The need for a system like this is very high due to the fact that these systems have shown an increase in student participation and engagement, as well as feedback for the professor on student learning [4]. Besides those reasons previously listed, our system could potentially be used for preliminary research data collection, psychological experimentation by polling students and collection real data while presenting false data, presentation feedback for a given speaker (student or otherwise), asking controversial questions while preserving anonymity, and many others.
+
+\section{Problem Statement}
+\subsection{}After much experience with iClicker and Top Hat Monocle throughout our education, we questioned whether or not a live questioning system built for classrooms that is not limited in its ability, while being free for students, could be implemented and effective. Such a system would aim to be better than current implementation for both the students and the professors in terms of both cost and usability. This is a worthwhile question to answer because our implementation could essentially make quizzes more enjoyable (but who enjoys quizzes anyway?) than previously, and offer effective feedback since OpenClick is not a one-way communication system like other live quizzing systems. An added bonus to having a successful and live quizzing system like OpenClick is that these kinds of student response systems go a long way in improving education and student engagement. Having these systems in place provides good interaction, engagement, and motivation in the class on the part of the student. A survey showed that these systems improve the performance of students in comparison to conventional classroom teaching methods [2].
+
+\subsection{}One of the many problems that we must tackle with this project is that Open Click must be easily accessible with low Internet accessibility. Despite hi-speed Internet being a very commonplace technology, there are many areas that do not have access to Wi-Fi, especially in universities. In the US, only 39 percent of public schools have wireless network access for the entire school [3]. The way that we are going to handle the issue of low connectivity is by utilizing a Raspberry Pi as a base station. If the classroom or location has poor Internet, the information will be sent to the Raspberry Pi and stored locally. Once an Internet connection is available, that information will be uploaded to the cloud. The information can then be put onto the website and handled accordingly. The teachers and professors will then be able to give feedback as needed.
+
+\subsection{}Open Click must also have a low cost for its use. As mentioned above, many implementations of this concept require a fee from the student for the usage. Open Click strives to make the use of the system essentially cost free for students. If a university wants to utilize the Open Click software, a fee may be required from the university just for maintenance of the website. Also, if the teacher or university knows that they are going to be utilizing the system in an environment where there is no Internet, they must purchase a Raspberry Pi to use as the base station. The free use for the students must remain one of the primary goals. 
+
+\subsection{}
+Besides a low cost and easy accessibility, Open Click needs to be extendable and customizable, both in terms of interfaces and questions. This would give the main user or professor the flexibility to choose the look and layout of the system to fir their own needs. Given the question, the professor and students may want to remain anonymous. With the flexibility to choose, the professor can set to have the students answer anonymously, as opposed to iClicker or Top Hat Monocle where you are forced to either remain anonymous or not. In terms of question types, both iClicker and Top Hat Monocle only allow for the use of multiple choice type questions. For Open Click, our goal is to allow the professor or main user of the system to choose the question types from a more expansive list of options. The problem that we will run into is how to allow multiple types of questions and how we will create the structures for the question formats.
+
+\subsection{}
+Besides the 3 primary focuses that we must tackle, we must also try to make sure that Open Click is simple and user-friendly in that it is easy for the students to use, is mobile friendly, and is easy to import and export data. The design of the website must make sure that the students are not bombarded with an excess amount of information. And is easy to look at. We also aim to implement an attendance-taking feature to Open Click, which could be as simple as singing in once class begins. Unfortunately, that is extremely easy for the student to bypass.
+
+\subsection{}
+Another potentially problematic situation that may arise is the case where a student expected to participate in the live classroom questioning, however, the student does not have access to the website. Currently, the expected way of gaining access to the system is via an individual Internet connected device such as a computer, laptop or smart phone. An efficient solution is needed that allows the student to access the system in the case that they do not have access via an Internet connected device.
+
+\section{Web Implementation}
+The Django Web framework breaks down reusable web components into applications. After careful designing and planning, we came up with three main components for our application: Accounts, Core, and Question and Answers.
+
+\subsection{Accounts}
+The Accounts application handles the creation of user accounts. Student and Instructor models inherit from the base user account so that the user integrity is maintained. In the Django Web framework, it is highly suggested that the built in user model is separated from needed logic to maintain security. The built in user model contains crucial user information.
+\subsubsection{Models}
+\begin{enumerate}
+\item Instructor: are the main "admin" users within the application and inherit from the built in user model and also relates to a university. Even though instructors may teach at more than one university, we wanted to make sure that they were counted as separate.
+\begin{enumerate}
+\item Relation to User
+\item Relation to University 
+\end{enumerate}
+\item Student: are the main "blind" users within the application. They inherit from Django's built in user model. Students can only see classes they have registered for and can only see questions made available to them by the instructor.
+\begin{enumerate}
+\item Relation to User
+\item Relation to University
+\item Relations to Classes
+\end{enumerate}
+\end{enumerate}
+\subsubsection{Actions}
+\begin{itemize}
+\item Create Instructors
+\item Create Students
+\item Create/Edit Profile
+\end{itemize}
+
+
+\subsection{Core}
+The Core application handles the majority of the groundwork for the application besides the Question and Answer application. It's how the users create lectures and students register for lectures. Registering allows the instructors to hide unnecessary information from being seen from unwanted users. An instructor sends out a registration code that then a student can go and register for the class.
+
+\subsubsection{Models}
+\begin{enumerate}
+\item University: Is the main address point and verification of users. Users can only enroll in their university if their email suffix they register with matches the email suffix listed in the database.
+\begin{enumerate}
+\item Name
+\item Email Suffix
+\end{enumerate}
+\item Registered Lecture: This is a through model which is the equivalent of a view within SQL. It allows quick access between many to many relations and specifically for this application it allows a quick look-up of students who are registered to a class and are registered to a lecture as well. Instructors must approve a student before they are allowed access to the lecture.
+\begin{enumerate}
+\item Relation to Lecture
+\item Relation to Student
+\item Approved Status
+\end{enumerate}
+\item Lecture: Basic lecture information that is normally available within a university's course catalog. It also contains a roster of students. When the lecture is created a random 6 digit code is generated for instructors to send to students to register. This allows 1,679,616 possible classes to be created before conflicts, but would be simple to increase the 6 digit code to more digits to not have to deal with that possibility. 
+\begin{enumerate}
+\item Relation to Instructor
+\item Relation to University
+\item Department
+\item Name
+\item Year
+\item Class Code
+\item Randomly Generated Registration Code
+\item Relations to Students
+\end{enumerate}
+\item Attendance Record: Basic attendance taker. Keeps track of date and the lecture and student its related to.
+\begin{enumerate}
+\item Relation to Lecture
+\item Relation to Student
+\item Date
+\item Present Status
+\end{enumerate}
+\end{enumerate}
+\subsubsection{Actions}
+\begin{itemize}
+\item List student's classes
+\item List instructor's classes
+\item Create lecture
+\item View lecture as student
+\item View lecture as instructor
+\item Start attendance
+\item View roster
+\item View summary dashboard
+\end{itemize}
+
+
+\subsection{Question and Answers}
+This takes on the main workload of the overall application. The majority of what OpenClick is supposed to do is be able to allow instructors to create and ask questions and for students to be able to respond to them appropriately. We included multiple models to be able to handle the different types of questions we allow instructors to ask. As part of the openness of OpenClick, new questions can be created by inheriting from the Question parent model.
+\subsubsection{Models}
+\begin{enumerate}
+\item Answer Option: are created in multiple to create the basis of an answer. This allows the Answer model to have a dynamic amount of options. Currently only supports text based options.
+\begin{enumerate}
+\item Answer Text
+\end{enumerate}
+\item Answer: Generic container for relation to owner, options, and a relation to the correct answer.
+\begin{enumerate}
+\item Relation to Instructor
+\item Relations to Answer Options
+\item Correct Answer
+\end{enumerate}
+\item Question: The parent model that new models will be able to inherit from. 
+\begin{enumerate}
+\item Relation to Instructor
+\item Relation to Lecture
+\item Text
+\item Active Status
+\item Start Time
+\end{enumerate}
+\item Open Ended Response: Responses to open ended questions, mostly just have a text based response.
+\begin{enumerate}
+\item Relation to Student
+\item Relation to Question
+\item Text Response
+\end{enumerate}
+\item Response Feedback: Response to a response, so that instructors can reply to open endedness.
+\begin{enumerate}
+\item Relation to Instructor
+\item Relation to Open Ended Response
+\item Feedback Text
+\end{enumerate}
+\item Closed Ended Question (Basic Question): Typical multiple choice question that has a definite answer.
+\begin{enumerate}
+\item Relation to Answer
+\end{enumerate}
+\item Answer Instance: Student responses to what they think the correct answer is. Contains the answer option in which they think is correct.
+\begin{enumerate}
+\item Relation to Student
+\item Relation to Question
+\item Relation to Answer Option
+\end{enumerate}
+\item Lecture Question: A through model for a quick look-up of questions for a specific lecture.
+\begin{enumerate}
+\item Relation to Lecture
+\item Relation to Question
+\end{enumerate}
+\end{enumerate}
+\subsubsection{Actions}
+\begin{itemize}
+\item Create/Edit/Delete/View question
+\item Make Question Viewable to students
+\item Create/Edit/Delete/View answer
+\item Respond to question
+\item Hide/Make question available to student
+\end{itemize}
+
+
+\section{Solutions}
+\subsection{}
+In terms of information gathering, we did research into iClicker and Top Hat Monocle and the features and implementations of them. We compared and contrasted the features of both of those systems with the goals and ideas that we have for Open Click. We looked at how we could improve the features of these systems or determined which ones we deemed unnecessary. What features were needed that we would need to focus on to make Open Click stand out and be better than the others?
+
+\subsection{}
+To implement a solution that would allow us to access the system from the classroom, our goal is to set up Ubuntu 14.04 and run a Nginix and Django Webserver. A hardened security system will be used through 443/SSL that only allows keys and approved users. Currently, Mason students that use the system are able to sign in though the Mason Central Authorization Service (CAS) using their netID and password instead of having to register directly to use the system.
+
+\subsection{}
+For implementing the feature that allows the user to work with the system without an Internet connection, we will use a Raspberry Pi b+ running Django Webserver and have it connect to an LCD display for visualization. The Raspberry Pi will have Bluetooth set up in order to receive incoming information. The teacher will create questions on the local Raspberry Pi, then the students answer via a mobile application that connects through Bluetooth. Once an Internet connection is received the Raspberry Pi will connect and sync the information it received with the OpenClick system.
+
+\subsection{}
+In response to the problem posed above that discusses the issue regarding a student that is unable to access OpenClick due to the fact that they do not currently have an Internet connected device with them, it is possible that the university that is actively using the OpenClick system can supply a few tablets or Internet connected devices to each room. Obviously, that brings about an entirely new problem as to whether the university will be able to supply the devices due to financial reasons or other unspecified reasons. Ideally, with the direction that most universities are going in, in that they are slowly turning their classrooms into digital classrooms that distribute all materials and necessary resources and information digitally, everyone would have their own individual Internet connected device. Currently that is just not the case right. However, a recent study reveals that 79\% of adults aged 18-24 own a smart phone of some kind and this number grows every year [1].  If all else fails, it is possible that the student may need to log in via their neighbors Internet connected device and participate in the quizzing that way.
+
+\subsection{}
+Basic classroom and faculty support, as well as technical support will be needed. The users will need to learn how to use the system. For example, professors will need to learn how to create classes, questions, add students, and simply understand the organization of all of the materials.
+
+\subsection{}
+It can be noticed that with implementations of a live questioning system such as Top Hat Monocle and iClicker, there is only a one-way interaction between the system and the user. Many of these systems were built with student anonymity in mind, thus resulting in no need for these systems to uniquely identify a student and subsequently store individual responses to the questions provided [1]. Fortunately for us, each user is registered into the system. In our case, each student signs into OpenClick using his or her Mason credentials. Due to the fact that each student logs in and their answers to given questions can be stored, the student can have a meaningful interaction with the system and feedback can be given. In the case that a question aims to have anonymous answers, an anonymity system could easily be implemented.
+
+\subsection{}
+We would like to be able to have a live demo working that gives the audience and potential users a pretty good understanding of how the system works, despite not being entirely complete, by time we reach practice runs for our presentation. We will finally be able to answer of research question once we receive enough feedback from students and professors who have tested out OpenClick. If the results are highly positive and a large majority believes that our implementation of live classroom quizzing would be a fit replacement to iClicker or Top Hat Monocle, or at least another option, then we will be able to make a conclusion to our research question. If the feedback is highly positive, then yes, you can make a free and simple, yet customizable and useful live questioning system for classrooms. 
+
+\section{Evaluation}
+Based on the past research of Czapracki, Burrows, Murphy, Fletcher, and Haston we decided to follow the same evaluation methods that they used by creating a survey that ranks both the old clicker implementation and the new implementation on a series of criteria. We also want to compare different statistics between the old implementation and new implentation.
+
+\subsection{Statistical Comparison}
+After adoption by a university we want our 
+
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation Results}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command, the
+% \label for the overall figure must come after \caption.
+% \hfil must be used as a separator to get equal spacing.
+% The subfigure.sty package works much the same way, except \subfigure is
+% used instead of \subfloat.
+%
+%\begin{figure*}[!t]
+%\centerline{\subfloat[Case I]\includegraphics[width=2.5in]{subfigcase1}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{subfigcase2}%
+%\label{fig_second_case}}}
+%\caption{Simulation results}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+
+
+% An example of a floating table. Note that, for IEEE style tables, the 
+% \caption command should come BEFORE the table. Table text will default to
+% \footnotesize as IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that IEEE does not put floats in the very first column - or typically
+% anywhere on the first page for that matter. Also, in-text middle ("here")
+% positioning is not used. Most IEEE journals use top floats exclusively.
+% Note that, LaTeX2e, unlike IEEE journals, places footnotes above bottom
+% floats. This can be corrected via the \fnbelowfloat command of the
+% stfloats package.
+
+\section{Conclusion}
+\subsection{Future Plans}
+At the moment, as OpenClick is not fully complete for what we desire to accomplish this semester, we are unable to state exactly what conclusions that we have come to. In our opinion, but unsupported by much evidence at the time, except for any demo we show, yes, it is possible to make a free and simple, yet customizable and useful live questioning system. What we do end up finishing of OpenClick in the coming weeks could ultimately change what this section says, in which then we will state our final conclusions.
+
+\subsection{}
+For future research, we would like to look into extending OpenClick a lot more. More questions types could be added. In its current state, OpenClick would most likely not be able to host multiple universities. We simply did not have enough time or resources to achieve the scale that would provide service to hundreds of thousands of students. We would also like to look into opening up OpenClick to other services, such as Twitter and Facebook. If that was done, OpenClick could be used in an environment that was not a classroom, such as a conference. Instead of having to sign in through the university, which would not be available at a conference, it could be possible to sign in using your Facebook or Twitter handle and take part in live questioning that way.
+
+
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+
+\appendices
+% use section* for acknowledgement
+\section*{Acknowledgment}
+
+
+We would like to thank Professor Wang and our classmates for providing key criticism and constructive feedback. 
+
+\section*{Location and Source Code}
+\url{http://gmu.openclick.education} \\
+\url{https://github.com/thebenwaters/openclickio}
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\begin{thebibliography}{1}
+
+\bibitem{IEEEhowto:kopka}
+H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+\end{thebibliography}
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{biography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{picture}}]{John Doe}
+\blindtext
+\end{IEEEbiography}
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+
+% that's all folks
+\end{document}
+
+
+
