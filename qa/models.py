@@ -69,7 +69,8 @@ class AnswerInstance(TimeStampedModel):
 	answer_option = models.ForeignKey(AnswerOption)
 
 	def is_correct(self):
-		return self.question.answer.correct_answer == self.answer_option
+		my_question = ClosedEndedQuestion.objects.get(pk=self.question.pk)
+		return self.answer_option == my_question.answer.correct_answer
 
 
 class LectureQuestion(TimeStampedModel):

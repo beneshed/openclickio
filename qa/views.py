@@ -18,7 +18,7 @@ class QuestionAnswerResponseView(LoginRequiredMixin, TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(QuestionAnswerResponseView, self).get_context_data(**kwargs)
-		question = get_object_or_404(Question, id=self.kwargs['question'])
+		question = get_object_or_404(ClosedEndedQuestion, id=self.kwargs['question'])
 		context['question'] = question
 		context['responses'] = AnswerInstance.objects.filter(question=question)
 		dictionary_response = AnswerInstance.objects.filter(question=question)\
