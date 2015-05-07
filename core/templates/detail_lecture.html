@@ -78,6 +78,7 @@
             <ul class="dropdown-menu" role="menu" aria-labelledby="createDropDown">
                 {# <li><a href="#">Create Multiple Choice Question</a></li> #}
                 <li><a href="{% url 'boolean-question-create' %}">Create True/False Question</a></li>
+                <li><a href="{% url 'multiple-choice-one' %}">Create Multiple Choice Question</a></li>
                 <li><a href="{% url 'open-question-create' %}">Create Open Ended Question</a></li>
             </ul>
         </div>
@@ -115,7 +116,7 @@
                                 {% else %}
                                     <td><i class="fa fa-times"></i></td>
                                     <td>
-                                        <button class="btn btn-default">Activate</button>
+                                        <a class="btn btn-default" href="{% url 'question-activate' question.id %}">Activate</a>
                                     </td>
                                 {% endif %}
                                 <td>

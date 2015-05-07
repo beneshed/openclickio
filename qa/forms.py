@@ -1,5 +1,7 @@
 from django import forms
 from core.models import Lecture
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 
 class GenericQuestionForm(forms.Form):
@@ -36,3 +38,13 @@ class BooleanQuestionForm(forms.Form):
 
 	def is_valid(self):
 		return True
+
+
+class MultipleChoiceNumberChoice(forms.Form):
+	number = forms.IntegerField(min_value=2, max_value=5)
+
+	def __init__(self, *args, **kwargs):
+		super(MultipleChoiceNumberChoice, self).__init__(*args,**kwargs)
+		self.helper = FormHelper(self)
+		self.helper.form_method = 'post'
+		self.helper.add_input(Submit('submit', 'Submit'))

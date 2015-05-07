@@ -13,7 +13,13 @@ class AnswerAdmin(admin.ModelAdmin):
 
 @admin.register(AnswerInstance)
 class AnswerInstanceAdmin(admin.ModelAdmin):
-	list_display = ('id', 'created', 'student', 'question', 'answer_option')
+	list_display = ('id', 'created', 'student', 'question', 'answer_option', 'was_correct')
+
+	def was_correct(self, obj):
+		my_question = ClosedEndedQuestion.objects.get(pk=obj.question.pk)
+		if obj.answer_option == my_question.answer.correct_answer:
+			return True
+		return False
 
 
 def activate(modeladmin, request, queryset):

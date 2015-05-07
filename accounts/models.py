@@ -21,7 +21,7 @@ class Instructor(TimeStampedModel):
 class Student(TimeStampedModel):
 	user = models.OneToOneField(User)
 	university = models.ForeignKey('core.University')
-	classes = models.ManyToManyField('core.Lecture')
+	classes = models.ManyToManyField('core.Lecture', null=True, blank=True)
 	#stats = models.OneToOneField('stats.Stat')
 
 	def __unicode__(self):

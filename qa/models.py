@@ -5,11 +5,17 @@ from model_utils.models import TimeStampedModel
 class AnswerOption(TimeStampedModel):
 	text = models.TextField()
 
+	def __unicode__(self):
+		return u'%s' % self.text
+
 
 class Answer(TimeStampedModel):
 	owner = models.ForeignKey('accounts.Instructor')
 	answer_options = models.ManyToManyField('AnswerOption', related_name='option')
 	correct_answer = models.ForeignKey('AnswerOption', related_name='correct')
+
+	def __unicode__(self):
+		return self.correct_answer
 
 
 class Question(TimeStampedModel):
@@ -18,6 +24,12 @@ class Question(TimeStampedModel):
 	text = models.TextField()
 	active = models.BooleanField(default=False)
 	start_time = models.DateTimeField(blank=True, null=True)
+
+	def activate(self):
+		self.active = True
+
+	def deactivate(self):
+		self.active = False
 
 
 class OpenEndedResponse(TimeStampedModel):

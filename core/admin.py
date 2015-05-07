@@ -15,7 +15,7 @@ class QuestionInline(admin.TabularInline):
 
 @admin.register(Lecture)
 class LectureAdmin(admin.ModelAdmin):
-	list_display = ('id', 'created', 'instructor', 'university', 'department', 'name')
+	list_display = ('id', 'created', 'instructor', 'university', 'department', 'name', 'registration_code')
 	inlines = (RosterInline, QuestionInline, )
 
 @admin.register(RegisteredLecture)
